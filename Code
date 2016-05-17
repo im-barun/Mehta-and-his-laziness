@@ -1,0 +1,61 @@
+import java.util.*;
+public class Mehtaandlaziness_a {
+
+	/**
+	 * @param args
+	 */
+	public static int noofevendivisor(List<Integer> divisor_array) {
+        int counter=0;
+        int square=0;
+        for(int div : divisor_array) {
+            if(div%2!=0) continue;
+            square=(int)Math.sqrt(div);
+            if(square*square==div) counter++;
+        }
+        return counter;
+    }
+    public static List<Integer> divisors(int N) {
+        List<Integer> divisor_array=new LinkedList<>();
+        divisor_array.add(1);
+        int sqrt=(int)Math.sqrt(N);
+        for(int i=2; i<=sqrt; i++) {
+            if(N%i == 0) {
+                divisor_array.add(i);
+                if(N/i!=i) divisor_array.add(N/i);
+            }
+        }
+        return divisor_array;
+    }
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 Scanner sc=new Scanner(System.in);
+	        int t=sc.nextInt(); 
+	        int p=0;
+	        int q=0;
+	        while(t-- > 0) {
+	           int N=sc.nextInt();
+	            List<Integer> divisor_array=divisors(N);
+	            p=noofevendivisor(divisor_array);
+	            if(p==0)
+	                System.out.println(0);
+	            else {
+	                q=divisor_array.size();
+	                while(p%2==0 && q%2==0) {
+	                    p/=2;
+	                    q/=2;
+	                }
+	                for(int i=3; i<=p; i+=2) {
+	                    while(p%i==0 && q%i==0) {
+	                        p/=i;
+	                        q/=i;
+	                    }
+	                }System.out.println(p+"/"+q);}
+	                }
+	        sc.close();
+	            
+
+	}
+	          
+
+}
